@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css?family=Rubik&display=swap');
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #f0f0f0;
+  user-select: none;
+  font-family: 'Rubik', sans-serif;
+}
+
+/* Hide Arrows From Input Number */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.thank-you {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.thank-you svg{
+  color: red;
+}
+
+.loading {
+  position: fixed;
+  left: 46%;
+  top: 50%;
+  z-index: 1;
+
+}
+
+div {
+  transition: 0.5s filter ease;
+}
+
+.blur {
+  filter: blur(2.5px);
+}
