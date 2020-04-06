@@ -33,7 +33,6 @@ export class PetForm extends Component {
                         אנו מודים לכם על ההרתמות למשימה החשובה של הצלת בעלי חיים <FeatherIcon size="19" icon="smile" /><br/>
                         שאלון זה נועד לייעל את התהליך עם העמותות אליהן אנו מעבירים את הפרטים.<br/>
                     </p>
-                    <strong style={{borderBottom: '1px solid #f88'}}>דגשים חשובים</strong><br/>
                     <p style={{marginTop: '2%'}}>
                         <FeatherIcon icon="chevron-left" />
                         ככל שבחירתכם תהיה מצומצת - כך ייקח זמן רב יותר למצוא התאמה.<br/>

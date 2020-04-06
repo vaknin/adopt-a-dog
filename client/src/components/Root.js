@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import PetForm from './PetForm';
-import FeatherIcon from 'feather-icons-react';
+import React, { Component } from 'react'
+import FeatherIcon from 'feather-icons-react'
+import axios from 'axios'
+import Admin from './Admin'
+import PetForm from './PetForm'
 
 export class Root extends Component {
 
@@ -39,29 +40,6 @@ export class Root extends Component {
             </div>)
     }
 
-    renderFormOrCompletionMessage = () => {
-
-        // Say thanks
-        if (this.state.completedForm){
-            return <div className="thank-you">
-                <div className="text-center">
-                    <h3>תודה!</h3>
-                    <p>מקווים שתמצאו בן משפחה חדש בקרוב!</p>
-                    <FeatherIcon icon="heart" />
-                </div>
-            </div>
-        }
-
-        // Render the questionnaire
-        else return (
-            <div>
-                {this.loading()}
-                <div className={`${this.state.loading ? 'blur' : ''}`}>
-                    <PetForm submit={this.submit} />
-                </div>
-            </div>)
-    }
-
     renderPage = () => {
 
         const page = this.state.page
@@ -77,14 +55,33 @@ export class Root extends Component {
                 </div>)
         }
 
-        // Questionnaire
+        // Questionnaire / Thank-you page
         else if (page === 'form'){
-            return this.renderFormOrCompletionMessage()
+
+            // Say thanks
+            if (this.state.completedForm){
+                return <div className="thank-you">
+                    <div className="text-center">
+                        <h3>תודה!</h3>
+                        <p>מקווים שתמצאו בן משפחה חדש בקרוב!</p>
+                        <FeatherIcon icon="heart" />
+                    </div>
+                </div>
+            }
+
+            // Render the questionnaire
+            else return (
+                <div>
+                    {this.loading()}
+                    <div className={`${this.state.loading ? 'blur' : ''}`}>
+                        <PetForm submit={this.submit} />
+                    </div>
+                </div>)
         }
 
         // Admin panel
         else if (page === 'admin'){
-            return <h3>עובדים כאן</h3>
+            return <Admin/>
         }
     }
 

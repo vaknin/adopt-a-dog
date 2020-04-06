@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const Form = require('./models/form.js');
+const User = require('./models/user.js');
+
 const db = mongoose.connection;
 
 module.exports = {
@@ -23,6 +25,17 @@ module.exports = {
         });
     },
 
+    // Log a user in
+    validateUser: function(username, password){
+        return new Promise(resolve => {
+            User.findOne({username, password}, (err, res) => {
+                if (err) throw err
+                else if (res === null) resolve(false)
+                else resolve(true)
+            })
+        })
+    },
+
     // Save the form to the database
     submit: function(form){
 
@@ -44,30 +57,56 @@ module.exports = {
             const comments = form.comments
 
             // Save to DB
-            new Form({name, dogAge, size, gender, age, city, houseType, phone, residents, experience, pets, timePeriod, comments}).save((err) => {
-                if (err) throw(err);
-                else resolve();
-            });
-        });
+            new Form({
+                name,
+                dogAge,
+                size,
+                gender,
+                age,
+                city,
+                houseType,
+                phone,
+                residents,
+                experience,
+                pets,
+                timePeriod,
+                comments,
+                adopted: false
+            }).save((err) => {
+                if (err) throw(err)
+                else resolve()
+            })
+        })
     },
 
     // Wipes the entire database
-    clear: function(){
+    clear: function(collectionsArray){
 
         return new Promise(resolve => {
 
-            const collections = ['forms'];
-            for (let collection of collections){
+            for (let collection of collectionsArray){
                 db.dropCollection(collection, err => {
                     if (err) console.log(`- ${collection} was already empty`);
                     else console.log(`- Removed ${collection} collection`);
 
                     // Last iteration
-                    if (collections.indexOf(collection) == collections.length - 1){
+                    if (collectionsArray.indexOf(collection) == collectionsArray.length - 1){
                         resolve();
                     }
                 });
             }
         })
     },
-};
+
+    createUser: function(username, password){
+        return new Promise(resolve => {
+            new User({username, password}).save(err => {
+                if (err) throw err
+                else{
+                    console.log(`successfully created the user '${username}'.`)
+                    resolve()
+                }
+            })
+        })
+    }
+}

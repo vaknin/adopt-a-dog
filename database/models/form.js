@@ -14,7 +14,9 @@ const Schema = new mongoose.Schema({
     size: Array,
     dogAge: Array,
     timePeriod: String,
-    comments: String
+    comments: String,
+    date: { type: Date, default: Date.now },
+    adopted: Boolean
 });
 
 module.exports = mongoose.model('Form', Schema);

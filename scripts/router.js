@@ -7,8 +7,8 @@ routes.post('/login', async (req, res) => {
     // Log in
     const username = req.body.username;
     const password = req.body.password;
-    const user = await database.logUserIn(username, password);
-    res.send(user);
+    const logged = await database.validateUser(username, password);
+    res.send(logged);
 });
 
 routes.post('/form', async (req, res) => {
