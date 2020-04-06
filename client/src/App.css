@@ -8,15 +8,13 @@ body {
   font-family: 'Rubik', sans-serif;
 }
 
-/*d-flex flex-column align-items-center justify-content-center*/
-.menu {
+.main-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
   background: url(https://images.unsplash.com/photo-1521449256184-170b4a4c437c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1349&q=80);
-  overflow: hidden;
 }
 
 .inner-menu {
@@ -99,9 +97,18 @@ div {
   top: 3%;
 }
 
+.admin-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  padding-top: 3%;
+  background: url(https://images.unsplash.com/photo-1521449256184-170b4a4c437c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1349&q=80);
+}
+
 /* Desktop */
 @media (min-width:961px){
-  .login-container, .menu {
+  .main-container {
     background-size: cover;
   }
 }

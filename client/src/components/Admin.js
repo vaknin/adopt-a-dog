@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import FeatherIcon from 'feather-icons-react'
 import Login from './Login'
 import axios from 'axios'
+import $ from 'jquery'
 
 export class Admin extends Component {
 
@@ -18,8 +20,8 @@ export class Admin extends Component {
             .then(response => {
 
                 // Logged in
-                if (response.data === true){
-                    this.setState({logged: true, username, password})
+                if (response.data.logged){
+                    this.setState({logged: true, formCount: response.data.formCount, username, password})
                 }
     
                 // Incorrect credentials
@@ -31,20 +33,49 @@ export class Admin extends Component {
         })
     }
 
-    renderPage = () => {
-
-        // Check if logged in
-        if (!this.state.logged){
-            return <Login
-                        login={this.login}
-                   />
-        }
-    }
-
     render() {
+
+        // Needs to log in
+        if (!this.state.logged){
+            return (
+                <Login
+                    login={this.login}
+                />
+            )
+        }
+
+        // Render admin panel
         return (
-            <div>
-                {this.renderPage()}
+            <div className="admin-container">
+                <h5 className="mb-4">טפסים במערכת: {this.state.formCount}</h5>
+
+                {/* Dog's age */}
+                <div className="form-group text-center">
+                    <label>גיל הכלב</label>
+                    <select multiple onChange={e => this.setState({dogAge: $(e.target).val()})} className="form-control-sm form-control">
+                        <option>לא משנה</option>
+                        <option>גור</option>
+                        <option>צעיר</option>
+                        <option>בוגר</option>
+                        <option>מבוגר</option>
+                    </select>
+                </div>
+
+                {/* Dog's size */}
+                <div className="form-group text-center">
+                    <label>גודל הכלב</label>
+                    <select multiple onChange={e => this.setState({size: $(e.target).val()})} className="form-control-sm form-control">
+                        <option>לא משנה</option>
+                        <option>קטן</option>
+                        <option>בינוני</option>
+                        <option>גדול</option>
+                    </select>
+                </div>
+
+                {/* Submit Form */}
+                <button type="button" className="btn btn-secondary mt-2 mb-3">
+                    <FeatherIcon icon="search" />
+                </button>
             </div>
         )
     }

@@ -5,10 +5,11 @@ const routes = express.Router();
 routes.post('/login', async (req, res) => {
 
     // Log in
-    const username = req.body.username;
-    const password = req.body.password;
-    const logged = await database.validateUser(username, password);
-    res.send(logged);
+    const username = req.body.username
+    const password = req.body.password
+    const logged = await database.validateUser(username, password)
+    const formCount = logged ? await database.getNumberOfForms() : undefined
+    res.send({logged, formCount})
 });
 
 routes.post('/form', async (req, res) => {

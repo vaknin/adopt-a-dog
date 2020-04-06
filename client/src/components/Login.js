@@ -70,7 +70,7 @@ export class Login extends Component {
 
     render() {
         return (
-            <div className="login-container">
+            <div className="main-container">
                 <div className={`login pt-5 pb-3 px-3 ${this.state.loading ? 'blur' : ''}`}>
                     <form onSubmit={this.handleOnSubmit} className="form-group d-flex flex-column">
                         <input onChange={e => this.setState({username: e.target.value})} className="form-control mb-3" type="text" placeholder="שם משתמש"></input>

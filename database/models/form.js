@@ -8,6 +8,7 @@ const Schema = new mongoose.Schema({
     city: String,
     houseType: String,
     phone: String,
+    phone2: String,
     residents: String,
     experience: String,
     pets: Array,

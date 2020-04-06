@@ -108,5 +108,15 @@ module.exports = {
                 }
             })
         })
-    }
+    },
+
+    // Log a user in
+    getNumberOfForms: function(){
+        return new Promise(resolve => {
+            Form.countDocuments({}, (err, count) => {
+                if (err) throw err
+                else resolve(count)
+            })
+        })
+    },
 }

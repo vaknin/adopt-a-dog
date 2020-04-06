@@ -18,7 +18,6 @@ export class PetForm extends Component {
 
     submit = e => {
         e.preventDefault();
-
         this.submitRef.current.disabled = true
         const form = this.state
         this.props.submit(form)
@@ -39,10 +38,7 @@ export class PetForm extends Component {
                         לשם דוגמה, משפחה המעוניינת לאמץ רק גורים, תחכה זמן רב הרבה יותר מאשר משפחה שגיל הכלב לא משנה לה.<br/><br/>
 
                         <FeatherIcon icon="chevron-left" />
-                        שימו לב שכל המתנדבים עושים זאת בזמנים הפנוי, לכן התהליך עלול לקחת מעט זמן, אך בכל זאת, אתם מוזמנים לפנות אלי אם אתם מרגישים ששכחו אתכם.<br/><br/>
-
-                        <FeatherIcon icon="chevron-left" />
-                        תוכלו למצוא עדכונים נוספים ב<a href="https://www.facebook.com/648407794/posts/10157770017417795" rel="noopener noreferrer" target="_blank">פוסט הפייסבוק שלנו.</a><br/>
+                        שימו לב שכל המתנדבים עושים זאת בזמנים הפנוי, לכן התהליך עלול לקחת מעט זמן, אך בכל זאת, אתם מוזמנים לפנות אלי אם אתם מרגישים ששכחו אתכם.<br/>
                     </p>
                     <p>
                         תודה, ואנו מקווים שתמצאו בן משפחה חדש בקרוב!<br/>
@@ -89,9 +85,9 @@ export class PetForm extends Component {
                         <label>סוג דירה</label>
                         <select required onChange={e => this.setState({houseType: e.target.value})} className="form-control-sm form-control">
                             <option selected disabled value="">סוג דירה</option>
-                            <option>דירה עם קרקע או גג</option>
-                            <option>דירה גדולה</option>
-                            <option>דירה קטנה</option>
+                            <option>דירה עם גג או חצר מתוחמים</option>
+                            <option>דירה עם גג או חצר לא מתוחמים</option>
+                            <option>דירה ללא גג או חצר</option>
                         </select>
                     </div>
 
@@ -101,15 +97,22 @@ export class PetForm extends Component {
                         <input required onChange={e => this.setState({phone: e.target.value})} type="number" className="form-control-sm form-control" />
                     </div>
 
+                    {/* 2nd Phone Number */}
+                    <div className="form-group text-center">
+                        <label>טלפון נוסף (אופציונלי)</label>
+                        <input onChange={e => this.setState({phone2: e.target.value})} type="number" className="form-control-sm form-control" />
+                    </div>
+
                     {/* Who's living in the house? */}
                     <div className="form-group text-center">
-                        <label>מי גר בבית?</label>
+                        <label>מי חי בבית?</label>
                         <select required onChange={e => this.setState({residents: e.target.value})} className="form-control-sm form-control">
                             <option selected disabled value="">סוג דיירים</option>
-                            <option>רק אני</option>
+                            <option>יחיד</option>
+                            <option>זוג</option>
                             <option>שותפים</option>
-                            <option>בן/בת זוג ו/או ילדים</option>
-                            <option>ההורים שלי (ילדים)</option>
+                            <option>משפחה עם ילדים מעל לגיל 5</option>
+                            <option>משפחה עם ילדים מתחת לגיל 5</option>
                         </select>
                     </div>
 
@@ -185,7 +188,9 @@ export class PetForm extends Component {
                     </div>
 
                     {/* Submit Form */}
-                    <button ref={this.submitRef} type="submit" className="btn btn-secondary mt-2 mb-3"><FeatherIcon icon="check" /></button>
+                    <button ref={this.submitRef} type="submit" className="btn btn-secondary mt-2 mb-3">
+                        <FeatherIcon size="17" icon="check" />
+                    </button>
                 </form>
             </div>
         )

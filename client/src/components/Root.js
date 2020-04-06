@@ -47,7 +47,7 @@ export class Root extends Component {
         // Main menu
         if (page === 'menu'){
             return (
-                <div className="menu">
+                <div className="main-container overflow-hidden">
                     <div className="inner-menu">
                         <button onClick={() => this.setState({page: 'form'})} type="button" className="btn btn-secondary m-3 p-2">רישום למאגר <FeatherIcon icon="edit"/></button>
                         <button onClick={() => this.setState({page: 'admin'})} type="button" className="btn btn-secondary m-3 p-2">כניסת עמותות <FeatherIcon icon="lock"/></button>
@@ -62,7 +62,9 @@ export class Root extends Component {
             if (this.state.completedForm){
                 return <div className="thank-you">
                     <div className="text-center">
-                        <h3>תודה!</h3>
+                        <h3>תודה!</h3><br/>
+                        תוכלו למצוא עדכונים נוספים ב<a href="https://www.facebook.com/648407794/posts/10157770017417795" rel="noopener noreferrer" target="_blank">פוסט הפייסבוק שלנו.</a><br/>
+                        <p>נשמח מאוד אם תשתפו את הפוסט, בכדי שנוכל לעזור לכמה שיותר חיות.</p>
                         <p>מקווים שתמצאו בן משפחה חדש בקרוב!</p>
                         <FeatherIcon icon="heart" />
                     </div>
