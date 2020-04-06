@@ -39,7 +39,7 @@ async function main(){
         });
 
         // Keep Heroku awake
-        keepHerokuUp('https://error-inspector.herokuapp.com/');
+        keepHerokuUp('https://just-adopt-a-dog.herokuapp.com/');
     }
 }
 

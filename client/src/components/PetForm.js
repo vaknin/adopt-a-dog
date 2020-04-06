@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import FeatherIcon from 'feather-icons-react'
+import $ from 'jquery'
 
 //#region citiesList
 
@@ -13,15 +14,11 @@ export class PetForm extends Component {
         this.submitRef = React.createRef()
     }
 
-    state = {
-        name: '',
-        dogAge: 'לא רלוונטי',
-        size: 'לא רלוונטי',
-        gender: 'לא רלוונטי',
-    }
+    state = {}
 
     submit = e => {
         e.preventDefault();
+
         this.submitRef.current.disabled = true
         const form = this.state
         this.props.submit(form)
@@ -31,24 +28,58 @@ export class PetForm extends Component {
         return (
             <div>
                 <h3 className="my-4 text-center">בקשה לאימוץ ואומנת כלבים</h3>
+                <div className="description">
+                    <p>
+                        אנו מודים לכם על ההרתמות למשימה החשובה של הצלת בעלי חיים <FeatherIcon size="19" icon="smile" /><br/>
+                        שאלון זה נועד לייעל את התהליך עם העמותות אליהן אנו מעבירים את הפרטים.<br/>
+                    </p>
+                    <strong style={{borderBottom: '1px solid #f88'}}>דגשים חשובים</strong><br/>
+                    <p style={{marginTop: '2%'}}>
+                        <FeatherIcon icon="chevron-left" />
+                        ככל שבחירתכם תהיה מצומצת - כך ייקח זמן רב יותר למצוא התאמה.<br/>
+                        לשם דוגמה, משפחה המעוניינת לאמץ רק גורים, תחכה זמן רב הרבה יותר מאשר משפחה שגיל הכלב לא משנה לה.<br/><br/>
+
+                        <FeatherIcon icon="chevron-left" />
+                        שימו לב שכל המתנדבים עושים זאת בזמנים הפנוי, לכן התהליך עלול לקחת מעט זמן, אך בכל זאת, אתם מוזמנים לפנות אלי אם אתם מרגישים ששכחו אתכם.<br/><br/>
+
+                        <FeatherIcon icon="chevron-left" />
+                        תוכלו למצוא עדכונים נוספים ב<a href="https://www.facebook.com/648407794/posts/10157770017417795" rel="noopener noreferrer" target="_blank">פוסט הפייסבוק שלנו.</a><br/>
+                    </p>
+                    <p>
+                        תודה, ואנו מקווים שתמצאו בן משפחה חדש בקרוב!<br/>
+                        <a href="https://www.facebook.com/rrotberg" rel="noopener noreferrer" target="_blank">רוני</a>&nbsp;<FeatherIcon size="15" style={{fill: 'red', color: 'black'}} icon="heart" />
+                    </p>
+                </div>
                 <form onSubmit={this.submit} className="d-flex justify-content-center align-items-center flex-column mt-4">
 
                     {/* Name */}
                     <div className="form-group text-center">
-                        <label><strong style={{color: 'red'}}>*</strong> שם</label>
-                        <input required onChange={e => this.setState({name: e.target.value})} type="text" className="form-control" />
+                        <label>שם מלא</label>
+                        <input required onChange={e => this.setState({name: e.target.value})} type="text" className="form-control-sm form-control" />
                     </div>
 
                     {/* Age */}
                     <div className="form-group text-center">
-                        <label><strong style={{color: 'red'}}>*</strong> גיל</label>
-                        <input required onChange={e => this.setState({age: e.target.value})} min="8" max="120" type="number" className="form-control" />
+                        <label>גיל</label>
+                        <input required onChange={e => this.setState({age: e.target.value})} min="8" max="120" type="number" className="form-control-sm form-control" />
+                    </div>
+
+                    {/* Region */}
+                    <div className="form-group text-center">
+                        <label>איזור מגורים</label>
+                        <select required onChange={e => this.setState({region: e.target.value})} className="form-control-sm form-control">
+                            <option selected disabled value="">איזור</option>
+                            <option>מרכז</option>
+                            <option>צפון</option>
+                            <option>דרום</option>
+                            <option>יהודה ושומרון</option>
+                        </select>
                     </div>
 
                     {/* City */}
                     <div className="form-group text-center">
-                        <label><strong style={{color: 'red'}}>*</strong> עיר מגורים</label>
-                        <select required onChange={e => this.setState({city: e.target.value})} className="form-control">
+                        <label>עיר מגורים</label>
+                        <select required onChange={e => this.setState({city: e.target.value})} className="form-control-sm form-control">
                             <option selected disabled value="">עיר</option>
                             {cities.map(city => <option key={city}>{city}</option>)}
                         </select>
@@ -57,7 +88,7 @@ export class PetForm extends Component {
                     {/* Type of house */}
                     <div className="form-group text-center">
                         <label>סוג דירה</label>
-                        <select required onChange={e => this.setState({houseType: e.target.value})} className="form-control">
+                        <select required onChange={e => this.setState({houseType: e.target.value})} className="form-control-sm form-control">
                             <option selected disabled value="">סוג דירה</option>
                             <option>דירה עם קרקע או גג</option>
                             <option>דירה גדולה</option>
@@ -67,14 +98,14 @@ export class PetForm extends Component {
 
                     {/* Phone Number */}
                     <div className="form-group text-center">
-                        <label><strong style={{color: 'red'}}>*</strong> טלפון</label>
-                        <input required onChange={e => this.setState({phone: e.target.value})} type="number" className="form-control" />
+                        <label>טלפון</label>
+                        <input required onChange={e => this.setState({phone: e.target.value})} type="number" className="form-control-sm form-control" />
                     </div>
 
                     {/* Who's living in the house? */}
                     <div className="form-group text-center">
-                        <label><strong style={{color: 'red'}}>*</strong> מי גר בבית?</label>
-                        <select required onChange={e => this.setState({residents: e.target.value})} className="form-control">
+                        <label>מי גר בבית?</label>
+                        <select required onChange={e => this.setState({residents: e.target.value})} className="form-control-sm form-control">
                             <option selected disabled value="">סוג דיירים</option>
                             <option>רק אני</option>
                             <option>שותפים</option>
@@ -85,28 +116,18 @@ export class PetForm extends Component {
 
                     {/* Experience with dogs */}
                     <div className="form-group text-center">
-                        <label><strong style={{color: 'red'}}>*</strong> נסיון עם כלבים</label>
-                        <select required onChange={e => this.setState({experience: e.target.value})} className="form-control">
+                        <label>נסיון עם כלבים</label>
+                        <select required onChange={e => this.setState({experience: e.target.value})} className="form-control-sm form-control">
                             <option selected disabled value="">נסיון</option>
                             <option>מנוסה</option>
                             <option>לא מנוסה</option>
                         </select>
                     </div>
 
-                    {/* Other pets */}
-                    <div className="form-group text-center">
-                        <label><strong style={{color: 'red'}}>*</strong> יש עוד חיות בבית?(ניתן לסמן כמה)</label>
-                        <select multiple required onChange={e => this.setState({pets: e.target.value})} className="form-control">
-                            <option>כלב</option>
-                            <option>חתול</option>
-                            <option>אחר</option>
-                        </select>
-                    </div>
-
                     {/* Adoption time period */}
                     <div className="form-group text-center">
-                        <label><strong style={{color: 'red'}}>*</strong> אימוץ או אומנה?</label>
-                        <select required onChange={e => this.setState({timePeriod: e.target.value})} className="form-control">
+                        <label>אימוץ או אומנה?</label>
+                        <select required onChange={e => this.setState({timePeriod: e.target.value})} className="form-control-sm form-control">
                             <option selected disabled value="">פרק זמן</option>
                             <option>אומנה</option>
                             <option>אימוץ</option>
@@ -117,20 +138,29 @@ export class PetForm extends Component {
                     {/* Dog's gender */}
                     <div className="form-group text-center">
                         <label>מין מועדף</label>
-                        <select required onChange={e => this.setState({gender: e.target.value})} className="form-control">
+                        <select required onChange={e => this.setState({gender: e.target.value})} className="form-control-sm form-control">
                             <option selected disabled value="">מין</option>
-                            <option>לא רלוונטי</option>
+                            <option>לא משנה</option>
                             <option>זכר</option>
                             <option>נקבה</option>
                         </select>
                     </div>
 
+                    {/* Other pets */}
+                    <div className="form-group text-center">
+                        <label>יש עוד חיות בבית? (ניתן לסמן כמה)</label>
+                        <select multiple required onChange={e => this.setState({pets: $(e.target).val()})} className="form-control-sm form-control">
+                            <option>כלב</option>
+                            <option>חתול</option>
+                            <option>אחר</option>
+                        </select>
+                    </div>
+
                     {/* Dog's size */}
                     <div className="form-group text-center">
-                        <label>גודל מועדף</label>
-                        <select required onChange={e => this.setState({size: e.target.value})} className="form-control">
-                            <option selected disabled value="">גודל</option>
-                            <option>לא רלוונטי</option>
+                        <label>גודל מועדף (ניתן לסמן כמה)</label>
+                        <select multiple required onChange={e => this.setState({size: $(e.target).val()})} className="form-control-sm form-control">
+                            <option>לא משנה</option>
                             <option>קטן</option>
                             <option>בינוני</option>
                             <option>גדול</option>
@@ -139,10 +169,9 @@ export class PetForm extends Component {
 
                     {/* Dog's age */}
                     <div className="form-group text-center">
-                        <label>גיל מועדף</label>
-                        <select required onChange={e => this.setState({dogAge: e.target.value})} className="form-control">
-                            <option selected disabled value="">גיל</option>
-                            <option>לא רלוונטי</option>
+                        <label>גיל מועדף (ניתן לסמן כמה)</label>
+                        <select multiple required onChange={e => this.setState({dogAge: $(e.target).val()})} className="form-control-sm form-control">
+                            <option>לא משנה</option>
                             <option>גור</option>
                             <option>צעיר</option>
                             <option>בוגר</option>
@@ -152,8 +181,8 @@ export class PetForm extends Component {
 
                     {/* Comments */}
                     <div className="form-group text-center">
-                        <label>הערות</label>
-                        <input onChange={e => this.setState({comments: e.target.value})} type="text" className="form-control"/>
+                        <label>הערות ובקשות</label>
+                        <input onChange={e => this.setState({comments: e.target.value})} type="text" className="form-control-sm form-control"/>
                     </div>
 
                     {/* Submit Form */}

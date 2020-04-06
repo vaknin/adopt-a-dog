@@ -8,6 +8,33 @@ body {
   font-family: 'Rubik', sans-serif;
 }
 
+/*d-flex flex-column align-items-center justify-content-center*/
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: url('https://images.unsplash.com/photo-1534543210152-32025bcfaad9?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80');
+}
+
+/* Desktop */
+@media (min-width:961px){
+  .menu {
+    background: url(https://images.unsplash.com/photo-1521449256184-170b4a4c437c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1349&q=80);
+    background-size: cover;
+  }
+}
+
+.inner-menu {
+  display: flex;
+  flex-direction: column;
+  background-color: cadetblue;
+  border-radius: 7px;
+  padding: 0.9rem;
+  background: url(https://upload.wikimedia.org/wikipedia/commons/d/df/Doge_homemade_meme.jpg);
+}
+
 /* Hide Arrows From Input Number */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -40,4 +67,17 @@ div {
 
 .blur {
   filter: blur(2.5px);
+}
+
+.description {
+  text-align: center;
+  padding: 5%;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.spinner-border {
+  width: 1rem;
+  height: 1rem;
+  border-width: .15em;
 }
