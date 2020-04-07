@@ -116,6 +116,21 @@ div {
   padding: 0.5rem;
 }
 
+.back-button-container {
+  border-bottom: 1px solid #afa3a3;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.results-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  margin-top: 4%;
+}
+
 /* Desktop */
 @media (min-width:961px){
   .main-container, .admin-container {

@@ -2,22 +2,13 @@ import React, { Component } from 'react'
 import Login from './Login'
 import axios from 'axios'
 import Search from './Search'
+import Results from './Results'
 
 export class Admin extends Component {
 
     state = {
         loading: false,
-        logged: false,
-        dogAge: ["הכל"],
-        size: ["הכל"],
-        gender: ["הכל"],
-        timePeriod: ["הכל"],
-        region: ["הכל"],
-        city: ["הכל"],
-        houseType: ["הכל"],
-        residents: ["הכל"],
-        experience: ["הכל"],
-        pets: ["הכל"]
+        logged: false
     }
 
     // Attempt to log in
@@ -48,20 +39,25 @@ export class Admin extends Component {
     // Search forms by criteria
     search = async criteria => {
 
+        // Start loading animation
         this.setState({loading: true})
 
+        // Send user & pass for validation
         const username = this.state.username
         const password = this.state.password
 
         await axios.post('/search', {username, password, criteria})
         .then(response => {
-            console.log(response.data)
+            this.setState({results: response.data.results})
         })
         .catch(e => {
             console.log(e)
         })
         .finally(() => this.setState({loading: false}))
+    }
 
+    reset = () => {
+        this.setState({results: undefined})
     }
 
     // Loading animation
@@ -85,10 +81,23 @@ export class Admin extends Component {
             )
         }
 
-        else return <Search
-                        formCount={this.state.formCount}
-                        search={this.search}
-                    />
+        // Display results
+        else if (this.state.results){
+            return (
+                <Results
+                    data={this.state.results}
+                    reset={this.reset}
+                />
+            )
+        }
+
+        // Search forms
+        else return (
+            <Search
+                formCount={this.state.formCount}
+                search={this.search}
+            />
+        )
     }
 
     render() {

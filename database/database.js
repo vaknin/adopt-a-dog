@@ -175,14 +175,4 @@ module.exports = {
             })
         })
     },
-
-    // Query all forms
-    test: function(criteria){
-        return new Promise(resolve => {
-            Form.find({ houseType: { houseType: { '$in': [Array] } } } , (err, res) => {
-                if (err) throw err
-                console.log(res)
-            })
-        })
-    }
 }

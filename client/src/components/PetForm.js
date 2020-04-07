@@ -117,7 +117,8 @@ export class PetForm extends Component {
                         <label>נסיון עם כלבים</label>
                         <select required onChange={e => this.setState({experience: e.target.value})} className="form-control-sm form-control">
                             <option selected disabled value="">נסיון</option>
-                            <option>מנוסה</option>
+                            <option>מנוסה והיה לי כלב</option>
+                            <option>מנוסה ולא היה לי כלב</option>
                             <option>לא מנוסה</option>
                         </select>
                     </div>
