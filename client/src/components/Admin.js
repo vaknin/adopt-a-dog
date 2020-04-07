@@ -9,11 +9,20 @@ export class Admin extends Component {
 
     state = {
         logged: false,
+        dogAge: ["הכל"],
+        size: ["הכל"],
+        gender: ["הכל"],
+        timePeriod: ["הכל"],
+        region: ["הכל"],
+        city: ["הכל"],
+        houseType: ["הכל"],
+        residents: ["הכל"],
+        experience: ["הכל"],
+        pets: ["הכל"]
     }
 
     // Attempt to log in
     login = (username, password) => {
-
         return new Promise(async resolve => {
 
             // Send the form details to the server
@@ -183,7 +192,7 @@ export class Admin extends Component {
                     </div>
 
                 </div>
-
+                
                 <button type="button" className="btn btn-secondary mt-4 mb-3">
                     <FeatherIcon icon="search" />
                 </button>

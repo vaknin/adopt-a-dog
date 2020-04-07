@@ -71,11 +71,11 @@ export class Login extends Component {
     render() {
         return (
             <div className="main-container">
-                <div className={`login pt-5 pb-3 px-3 ${this.state.loading ? 'blur' : ''}`}>
-                    <form onSubmit={this.handleOnSubmit} className="form-group d-flex flex-column">
-                        <input onChange={e => this.setState({username: e.target.value})} className="form-control mb-3" type="text" placeholder="שם משתמש"></input>
-                        <input onChange={e => this.setState({password: e.target.value})} className="form-control" type="password" placeholder="סיסמה"></input>
-                        <button onClick={this.login} type="button" className="btn btn-secondary mt-4">התחבר <FeatherIcon icon="arrow-left-circle"/></button>
+                <div className={`login p-1 ${this.state.loading ? 'blur' : ''}`}>
+                    <form onSubmit={this.handleOnSubmit} className="align-items-center form-group d-flex flex-column">
+                        <input onChange={e => this.setState({username: e.target.value})} className="w-75 form-control my-3" type="text" placeholder="שם משתמש"></input>
+                        <input onChange={e => this.setState({password: e.target.value})} className="w-75 form-control" type="password" placeholder="סיסמה"></input>
+                        <button onClick={this.login} type="button" className="btn btn-secondary mt-3 p-2">התחבר <FeatherIcon icon="arrow-left-circle"/></button>
                     </form>
                 </div>
                 {this.loadingSpinner()}
