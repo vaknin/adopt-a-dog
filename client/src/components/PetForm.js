@@ -31,7 +31,7 @@ export class PetForm extends Component {
                     <p style={{marginTop: '2%'}}>
                         <FeatherIcon icon="chevron-left" />
                         ככל שבחירתכם תהיה מצומצת - כך ייקח זמן רב יותר למצוא התאמה.<br/>
-                        לשם דוגמה, משפחה המעוניינת לאמץ רק גורים, תחכה זמן רב הרבה יותר מאשר משפחה שגיל הכלב לא משנה לה.<br/><br/>
+                        לשם דוגמה, משפחה המעוניינת לאמץ רק גורים, תחכה זמן רב הרבה יותר מאשר משפחה שגיל הכלב לא משנה לי לה.<br/><br/>
 
                         <FeatherIcon icon="chevron-left" />
                         שימו לב שכל המתנדבים עושים זאת בזמנים הפנוי, לכן התהליך עלול לקחת מעט זמן, אך בכל זאת, אתם מוזמנים לפנות אלינו אם אתם מרגישים ששכחו אתכם.<br/>
@@ -138,7 +138,7 @@ export class PetForm extends Component {
                         <label>מין מועדף</label>
                         <select required onChange={e => this.setState({gender: e.target.value})} className="form-control-sm form-control">
                             <option selected disabled value="">מין</option>
-                            <option>לא משנה</option>
+                            <option>לא משנה לי</option>
                             <option>זכר</option>
                             <option>נקבה</option>
                         </select>
@@ -158,7 +158,7 @@ export class PetForm extends Component {
                     <div className="form-group text-center">
                         <label>גודל מועדף (ניתן לסמן כמה)</label>
                         <select multiple required onChange={e => this.setState({size: $(e.target).val()})} className="form-control-sm form-control">
-                            <option>לא משנה</option>
+                            <option>לא משנה לי</option>
                             <option>קטן</option>
                             <option>בינוני</option>
                             <option>גדול</option>
@@ -169,7 +169,7 @@ export class PetForm extends Component {
                     <div className="form-group text-center">
                         <label>גיל מועדף (ניתן לסמן כמה)</label>
                         <select multiple required onChange={e => this.setState({dogAge: $(e.target).val()})} className="form-control-sm form-control">
-                            <option>לא משנה</option>
+                            <option>לא משנה לי</option>
                             <option>גור</option>
                             <option>צעיר</option>
                             <option>בוגר</option>

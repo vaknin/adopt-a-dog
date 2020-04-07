@@ -16,6 +16,7 @@ async function main(){
 
     // Connect to database
     await database.connect(process.env.DB_PASS);
+    //await database.test()
     //await database.createUser('avvaknin', '321123321')
     //await database.clear(['forms'])
     

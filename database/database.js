@@ -48,8 +48,10 @@ module.exports = {
             const gender = form.gender
             const age = form.age
             const city = form.city
+            const region = form.region
             const houseType = form.houseType
             const phone = form.phone
+            const phone2 = form.phone
             const residents = form.residents
             const experience = form.experience
             const pets = form.pets
@@ -57,22 +59,8 @@ module.exports = {
             const comments = form.comments
 
             // Save to DB
-            new Form({
-                name,
-                dogAge,
-                size,
-                gender,
-                age,
-                city,
-                houseType,
-                phone,
-                residents,
-                experience,
-                pets,
-                timePeriod,
-                comments,
-                adopted: false
-            }).save((err) => {
+            new Form({ name, dogAge, size, gender, age, city, region, houseType, phone, phone2, residents, experience, pets, timePeriod, comments, adopted: false})
+            .save((err) => {
                 if (err) throw(err)
                 else resolve()
             })
@@ -110,8 +98,8 @@ module.exports = {
         })
     },
 
-    // Log a user in
-    getNumberOfForms: function(){
+    // Get the total number of Form documents
+    getFormCount: function(){
         return new Promise(resolve => {
             Form.countDocuments({}, (err, count) => {
                 if (err) throw err
@@ -119,4 +107,82 @@ module.exports = {
             })
         })
     },
+
+    // Query all forms
+    getForms: function(criteria){
+        return new Promise(resolve => {
+
+            let dogAge, size, gender, timePeriod, region, city, houseType, residents, experience, pets
+            
+            // Loop through the filters
+            for (let key in criteria){
+
+                // If the criteria contains 'all', set the key to true
+                if (criteria[key].includes('הכל')) criteria[key] = {$exists: true}
+
+                // "all" wasn't selected
+                else criteria[key] = { $in: [...criteria[key], 'לא משנה לי']}
+                //else criteria[key] = { key: { "$in": [...criteria[key], "לא משנה לי"] } }
+
+                //console.log(criteria[key])
+
+                switch(key) {
+                    case 'dogAge':
+                        dogAge = criteria[key]
+                        break
+
+                    case 'size':
+                        size = criteria[key]
+                        break
+
+                    case 'gender':
+                        gender = criteria[key]
+                        break
+
+                    case 'timePeriod':
+                        timePeriod = criteria[key]
+                        break
+
+                    case 'region':
+                        region = criteria[key]
+                        break
+
+                    case 'city':
+                        city = criteria[key]
+                        break
+
+                    case 'houseType':
+                        houseType = criteria[key]
+                        break
+
+                    case 'residents':
+                        residents = criteria[key]
+                        break
+
+                    case 'experience':
+                        experience = criteria[key]
+                        break
+
+                    case 'pets':
+                        pets = criteria[key]
+                        break
+                }
+            }
+
+            Form.find({dogAge, size, gender, timePeriod, region, city, houseType, residents, experience, pets, adopted: false, houseType}, (err, res) => {
+                if (err) throw err
+                else resolve(res)
+            })
+        })
+    },
+
+    // Query all forms
+    test: function(criteria){
+        return new Promise(resolve => {
+            Form.find({ houseType: { houseType: { '$in': [Array] } } } , (err, res) => {
+                if (err) throw err
+                console.log(res)
+            })
+        })
+    }
 }

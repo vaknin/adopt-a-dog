@@ -9,18 +9,7 @@ export class Login extends Component {
     state = {
         username: undefined,
         password: undefined,
-        showAlert: false,
-        loading: false
-    }
-
-    // Loading animation
-    loadingSpinner = () => {
-
-        if (this.state.loading) return (
-            <div className="loading d-flex justify-content-center flex-column align-items-center">
-                <strong>טוען..</strong>
-                <div className="spinner-border mb-2" role="status"/>
-            </div>)
+        showAlert: false
     }
     
     // Attempt cookies login
@@ -39,8 +28,6 @@ export class Login extends Component {
 
         const username = this.state.username
         const password = this.state.password
-
-        this.setState({loading: true})
         const loggedIn = await this.props.login(username, password);
 
         // Login failed
@@ -53,8 +40,6 @@ export class Login extends Component {
             this.cookies.set('username', username);
             this.cookies.set('password', password);
         }
-
-        this.setState({loading: false})
     }
     
     alertWrongCredentials = () => {
@@ -78,7 +63,6 @@ export class Login extends Component {
                         <button onClick={this.login} type="button" className="btn btn-secondary mt-3 p-2">התחבר <FeatherIcon icon="arrow-left-circle"/></button>
                     </form>
                 </div>
-                {this.loadingSpinner()}
                 {this.alertWrongCredentials()}
             </div>
         )
