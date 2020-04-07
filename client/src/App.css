@@ -131,6 +131,10 @@ div {
   margin-top: 4%;
 }
 
+.result {
+  border-bottom: 0.4px solid #235c7b;
+}
+
 /* Desktop */
 @media (min-width:961px){
   .main-container, .admin-container {

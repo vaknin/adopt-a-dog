@@ -51,7 +51,7 @@ module.exports = {
             const region = form.region
             const houseType = form.houseType
             const phone = form.phone
-            const phone2 = form.phone
+            const phone2 = form.phone2 && form.phone2 != form.phone ? form.phone2 : undefined
             const residents = form.residents
             const experience = form.experience
             const pets = form.pets
