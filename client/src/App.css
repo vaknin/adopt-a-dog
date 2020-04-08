@@ -8,6 +8,11 @@ body {
   font-family: 'Rubik', sans-serif;
 }
 
+.phone-buttons a {
+  text-decoration: none;
+  color: black;
+}
+
 .main-container {
   display: flex;
   flex-direction: column;
@@ -44,8 +49,20 @@ input::-webkit-inner-spin-button {
   align-items: center;
 }
 
-.thank-you svg{
-  color: red;
+.thank-you-text {
+  border-bottom: 1px solid #bfbaba;
+  padding-bottom: 4%;
+  margin-bottom: 9%;
+}
+
+.heart {
+  fill: #ffa3a3;
+  color: #4c4c4c;
+  stroke-width: 1.3px;
+}
+
+.feather-alert-circle {
+  fill: #ffff8b
 }
 
 .loading {
@@ -117,10 +134,12 @@ div {
 }
 
 .back-button-container {
-  border-bottom: 1px solid #afa3a3;
-  width: 100%;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+  border-bottom: 1px solid #afa3a3;
+  margin-bottom: .2rem!important;
+  width: 100%;
 }
 
 .results-container {
@@ -132,7 +151,23 @@ div {
 }
 
 .result {
-  border-bottom: 0.4px solid #235c7b;
+  border-bottom: 1px solid #1c2d38;
+  background-color: #7392a7;
+  border-radius: 9px;
+  margin-bottom: 5%;
+  padding-top: 1rem!important;
+  padding-bottom: 1rem!important;
+  text-align: center;
+}
+
+.result p {
+  margin: 0 !important;
+}
+
+.phone-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  margin: .3rem 4rem 0 4rem;
 }
 
 /* Desktop */

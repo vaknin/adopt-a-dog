@@ -32,7 +32,7 @@ export class Results extends Component {
             <div style={{justifyContent: 'flex-start'}} className="main-container">
                 <div className="back-button-container">
                     <h5 className="my-3 mx-3">{`נמצאו ${this.props.data.length} טפסים העונים לדרישות החיפוש`}</h5>
-                    <FeatherIcon size="35" className="m-3 mt-4" color="#171717" onClick={this.props.reset} icon="arrow-left" />
+                    <FeatherIcon size="35" className="mx-3" color="#171717" onClick={this.props.reset} icon="arrow-left" />
                 </div>
 
                 <div className="results-container">

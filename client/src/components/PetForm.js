@@ -29,16 +29,25 @@ export class PetForm extends Component {
                         שאלון זה נועד לייעל את התהליך עם העמותות אליהן אנו מעבירים את הפרטים.<br/>
                     </p>
                     <p style={{marginTop: '2%'}}>
-                        <FeatherIcon icon="chevron-left" />
-                        ככל שבחירתכם תהיה מצומצת - כך ייקח זמן רב יותר למצוא התאמה.<br/>
-                        לשם דוגמה, משפחה המעוניינת לאמץ רק גורים, תחכה זמן רב הרבה יותר מאשר משפחה שגיל הכלב לא משנה לי לה.<br/><br/>
 
                         <FeatherIcon icon="chevron-left" />
-                        שימו לב שכל המתנדבים עושים זאת בזמנים הפנוי, לכן התהליך עלול לקחת מעט זמן, אך בכל זאת, אתם מוזמנים לפנות אלינו אם אתם מרגישים ששכחו אתכם.<br/>
+                        ככל שבחירתכם תהיה מצומצת - כך ייקח זמן רב יותר למצוא התאמה.<br/>
+                        לשם דוגמה, משפחה המעוניינת לאמץ רק גורים, תחכה זמן רב יותר מאשר משפחה המעוניינת גם בכלבים צעירים.<br/><br/>
+
+                        <FeatherIcon icon="chevron-left" />
+                        בנוגע לכלבים מחונכים לצרכים - מכיוון שאין היכרות מעמיקה עם כל הכלבים, פרט זה לעתים אינו ידוע וכמו כן, לוקח לכל כלב זמן להתרגל לסביבה חדשה - דבר אשר יצריך מעט סבלנות מצדכם.<br/><br/>
+
+                        <FeatherIcon icon="chevron-left" />
+                        האימוצים הינם בתשלום סמלי עבור סל אימוץ, הכולל בתוכו את כל החיסונים הנדרשים, סירוס או עיקור, שבב ועוד.<br/><br/>
+
+                        <FeatherIcon icon="chevron-left" />
+                        שימו לב שכל המתנדבים עושים זאת בזמנם הפנוי, לכן התהליך עלול לקחת מעט זמן.<br/>
+                        הרגישו חופשיים לפנות אלינו אם אתם מרגישים ששכחו אתכם.<br/>
+
                     </p>
                     <p>
                         תודה, ואנו מקווים שתמצאו בן משפחה חדש בקרוב!<br/>
-                        <a href="https://www.facebook.com/rrotberg" rel="noopener noreferrer" target="_blank">רוני</a>&nbsp;<FeatherIcon size="15" style={{fill: 'red', color: 'black'}} icon="heart" />
+                        <FeatherIcon size="15" style={{fill: 'red', color: 'black'}} icon="heart" />
                     </p>
                 </div>
                 <form onSubmit={this.submit} className="d-flex justify-content-center align-items-center flex-column mt-4">
