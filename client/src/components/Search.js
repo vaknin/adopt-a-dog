@@ -153,6 +153,7 @@ export class Search extends Component {
                             <option>הכל</option>
                             <option>כלב</option>
                             <option>חתול</option>
+                            <option>אין</option>
                             <option>אחר</option>
                         </select>
                     </div>

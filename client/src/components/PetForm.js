@@ -99,13 +99,13 @@ export class PetForm extends Component {
                     {/* Phone Number */}
                     <div className="form-group text-center">
                         <label>טלפון</label>
-                        <input required onChange={e => this.setState({phone: e.target.value})} type="number" className="form-control-sm form-control" />
+                        <input required onChange={e => this.setState({phone: e.target.value})} type="tel" maxLength="10" minLength="9" className="form-control-sm form-control" />
                     </div>
 
                     {/* 2nd Phone Number */}
                     <div className="form-group text-center">
                         <label>טלפון נוסף (כדאי!)</label>
-                        <input onChange={e => this.setState({phone2: e.target.value})} type="number" className="form-control-sm form-control" />
+                        <input onChange={e => this.setState({phone2: e.target.value})} type="tel" maxLength="10" minLength="9" className="form-control-sm form-control" />
                     </div>
 
                     {/* Who's living in the house? */}
@@ -158,6 +158,7 @@ export class PetForm extends Component {
                     <div className="form-group text-center">
                         <label>יש עוד חיות בבית? (ניתן לסמן כמה)</label>
                         <select multiple required onChange={e => this.setState({pets: $(e.target).val()})} className="form-control-sm form-control">
+                            <option>אין</option>
                             <option>כלב</option>
                             <option>חתול</option>
                             <option>אחר</option>

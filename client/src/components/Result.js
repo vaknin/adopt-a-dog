@@ -8,7 +8,13 @@ export class Result extends Component {
         return `${date.getDate()}/${date.getMonth()+1}/${date.getYear()-100}`
     }
 
-    phoneButton = (number, isSecondary) => <a href={`tel:${number}`}><FeatherIcon style={{strokeWidth: '0.8px'}} fill={isSecondary ? '#8895bf' : '#2b76af'} icon="phone-call" size="24"/></a>
+    phoneButton = (number, isSecondary) => {
+        return (
+            <a onClick={e => e.stopPropagation()} href={`tel:${number}`}>
+                <FeatherIcon style={{strokeWidth: '0.8px'}} fill={isSecondary ? '#2b76af' : '#8895bf'} icon="phone-call" size="24"/>
+            </a>
+        )
+    }
 
     render() {
         const date = this.getDate(this.props.data.date)
@@ -19,7 +25,7 @@ export class Result extends Component {
         const timePeriod = this.props.data.timePeriod
         
         return (
-            <div className="result p-2">
+            <div className="result p-2" onClick={this.props.expand}>
                 <p>{`${name} - ${timePeriod}`}</p>
                 <div className="phone-buttons">
                     {this.phoneButton(phone)} {phone2 ? this.phoneButton(phone2, true) : null}
