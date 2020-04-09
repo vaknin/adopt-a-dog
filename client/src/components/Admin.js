@@ -40,7 +40,7 @@ export class Admin extends Component {
     search = async criteria => {
 
         // Start loading animation
-        this.setState({loading: true})
+        this.setState({loading: true, criteria})
 
         // Send user & pass for validation
         const username = this.state.username
@@ -56,30 +56,8 @@ export class Admin extends Component {
         .finally(() => this.setState({loading: false}))
     }
 
-    // Set the form as 'adopted' and hide from the list
-    markAdpoted = async id => {
-
-        // Start loading animation
-        this.setState({loading: true})
-
-        return console.log(id)
-
-        // Send user & pass for validation
-        const username = this.state.username
-        const password = this.state.password
-
-        await axios.post('/adopt', {username, password, id})
-        .then(response => {
-            //this.setState({results: response.data.results})
-        })
-        .catch(e => {
-            console.log(e)
-        })
-        .finally(() => this.setState({loading: false}))
-    }
-
-    // Delete a form
-    delete = async id => {
+    // Hide the form (reason is either 'adopted' or 'deleted')
+    hide = async (id, reason) => {
 
         // Start loading animation
         this.setState({loading: true})
@@ -87,10 +65,11 @@ export class Admin extends Component {
         // Send user & pass for validation
         const username = this.state.username
         const password = this.state.password
+        const criteria = this.state.criteria
 
-        await axios.post('/adopt', {username, password, id})
+        await axios.post('/hide', {username, password, id, reason, criteria})
         .then(response => {
-            //this.setState({results: response.data.results})
+            this.setState({results: response.data.results})
         })
         .catch(e => {
             console.log(e)
@@ -98,17 +77,20 @@ export class Admin extends Component {
         .finally(() => this.setState({loading: false}))
     }
 
+    // Go back to the search screen
     reset = () => {
         this.setState({results: undefined})
     }
 
     // Loading animation
     loadingSpinner = () => {
-        if (this.state.loading) return (
-            <div className="loading d-flex justify-content-center flex-column align-items-center">
-                <strong>טוען..</strong>
-                <div className="spinner-border mb-2" role="status"/>
-            </div>)
+        if (this.state.loading){
+            return (
+                <div className="loading d-flex justify-content-center flex-column align-items-center">
+                    <strong>טוען..</strong>
+                    <div className="spinner-border mb-2" role="status"/>
+                </div>)
+        }
     }
 
     // Dynmically render the page based on states
@@ -129,8 +111,7 @@ export class Admin extends Component {
                 <Results
                     data={this.state.results}
                     reset={this.reset}
-                    markAdpoted={this.markAdpoted}
-                    delete={this.delete}
+                    hide={this.hide}
                 />
             )
         }

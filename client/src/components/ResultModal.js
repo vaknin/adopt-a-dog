@@ -74,10 +74,10 @@ export class ResultModal extends Component {
                     עדכון
                 </button>
                 <div className="dropdown-menu">
-                    <button className="dropdown-item" onClick={this.props.markAdpoted}>
+                    <button className="dropdown-item" onClick={() => this.props.hide('adoption')}>
                         אימץ
                     </button>
-                    <button className="dropdown-item" onClick={this.props.delete}>
+                    <button className="dropdown-item" onClick={() => this.props.hide('deletion')}>
                         הסרה
                     </button>
                 </div>

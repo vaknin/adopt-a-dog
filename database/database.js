@@ -101,7 +101,7 @@ module.exports = {
     // Get the total number of Form documents
     getFormCount: function(){
         return new Promise(resolve => {
-            Form.countDocuments({}, (err, count) => {
+            Form.countDocuments({adopted: false, deleted: false}, (err, count) => {
                 if (err) throw err
                 else resolve(count)
             })
@@ -197,6 +197,22 @@ module.exports = {
                 }
             })
             resolve(console.log('Backed up all forms'))
+        })
+    },
+
+    hide: function(id, reason){
+        return new Promise(resolve => {
+
+            // Set if it is adoption
+            const update = {}
+            if (reason === 'adoption') update.adopted = true
+            else if (reason === 'deletion') update.deleted = true
+
+            // Update
+            Form.findByIdAndUpdate(id, update, (err, res) => {
+                if (err) throw err
+                else resolve()
+            })
         })
     }
 }
