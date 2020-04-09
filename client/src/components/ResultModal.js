@@ -1,9 +1,4 @@
 import React, { Component } from 'react'
-/*
-    phone: "0259252"
-    phone2: "0259252"
-    _id: "5e8c834d8072c533ecaba5e5"
-*/
 
 export class ResultModal extends Component {
 
@@ -50,9 +45,7 @@ export class ResultModal extends Component {
                 </button>
                 <div className="dropdown-menu">
                     <a
-                        href={type === 'whatsapp' ? `https://web.whatsapp.com/send?phone=+972${number1}` : `tel:${number1}`}
-                        rel="noopener noreferrer"
-                        target="_blank"
+                        href={type === 'whatsapp' ? `https://api.whatsapp.com/send?phone=+972${number1}` : `tel:${number1}`}
                         className="dropdown-item"
                     >
                         טלפון ראשי
@@ -60,9 +53,7 @@ export class ResultModal extends Component {
                     {
                         number2 ?
                         <a
-                            href={type === 'whatsapp' ? `https://web.whatsapp.com/send?phone=+972${number2}` : `tel:${number2}`}
-                            rel="noopener noreferrer"
-                            target="_blank"
+                            href={type === 'whatsapp' ? `https://api.whatsapp.com/send?phone=+972${number2}` : `tel:${number2}`}
                             className="dropdown-item"
                         >
                             טלפון משני
@@ -70,6 +61,25 @@ export class ResultModal extends Component {
                         :
                         null
                     }
+                </div>
+            </div>
+        )
+    }
+
+    // Render a whatsapp/phonecall dropdown button
+    renderEditDropdown = () => {
+        return (
+            <div className="btn-group" role="group">
+                <button type="button" className='btn btn-dark dropdown-toggle' data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    עדכון
+                </button>
+                <div className="dropdown-menu">
+                    <button className="dropdown-item" onClick={this.props.markAdpoted}>
+                        אימץ
+                    </button>
+                    <button className="dropdown-item" onClick={this.props.delete}>
+                        הסרה
+                    </button>
                 </div>
             </div>
         )
@@ -83,7 +93,7 @@ export class ResultModal extends Component {
 
         return (
             <div className="modal fade" id="resultModal" tabIndex="-1" role="dialog" aria-hidden="true">
-                <div className="modal-dialog modal-dialog-centered" role="document">
+                <div className="modal-dialog" role="document">
                     <div className="modal-content">
                     <div className="modal-header">
                         <h5 className="modal-title">{data.name}</h5>
@@ -112,8 +122,7 @@ export class ResultModal extends Component {
                         <button type="button" className="btn btn-secondary" data-dismiss="modal">סגור</button>
                         {this.renderPhoneDropdown('phonecall')}
                         {this.renderPhoneDropdown('whatsapp')}
-                        <button onClick={this.props.delete} type="button" className="btn btn-danger">הסרה</button>
-                        <button onClick={this.props.markAdpoted} type="button" className="btn btn-primary">אימץ!</button>
+                        {this.renderEditDropdown()}
                     </div>
                     </div>
                 </div>

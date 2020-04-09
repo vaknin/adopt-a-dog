@@ -169,10 +169,8 @@ div {
 }
 
 .results-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: center;
+  display: grid;
+  grid-template-columns: auto auto;
   margin-top: 4%;
 }
 
@@ -180,10 +178,12 @@ div {
   border-bottom: 1px solid #1c2d38;
   background-color: #7392a7;
   border-radius: 9px;
-  margin-bottom: 5%;
-  padding-top: 1rem!important;
-  padding-bottom: 1rem!important;
+  margin-bottom: 14%;
+  padding-top: 1.5rem!important;
+  padding-bottom: 1.5rem!important;
   text-align: center;
+  margin-left: 2rem;
+  margin-right: 2rem;
 }
 
 .result p {
@@ -202,9 +202,7 @@ div {
 }
 
 .modal-footer {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  justify-content: space-between; 
+  justify-content: center; 
 }
 
 .modal-footer button{
@@ -261,6 +259,11 @@ div {
   }
 
   .results-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    margin-top: 4%;
     display: grid;
     grid-template-columns: auto auto auto auto;
     height: 100vh;
@@ -270,6 +273,11 @@ div {
   }
 
   .result {
+    border-bottom: 1px solid #1c2d38;
+    border-radius: 9px;
+    padding-top: 1.5rem!important;
+    padding-bottom: 1.5rem!important;
+    text-align: center;
     margin: auto 0.75rem auto 0.75rem;
     cursor: pointer;
     transition: background 0.3s ease-in;
