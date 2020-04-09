@@ -112,8 +112,13 @@ module.exports = {
     getForms: function(criteria){
         return new Promise(resolve => {
 
-            let dogAge, size, gender, timePeriod, region, city, houseType, residents, experience, pets
-            
+            let name, dogAge, size, gender, timePeriod, region, city, houseType, residents, experience, pets
+
+            // Search by person's name
+            if (criteria.name === 'הכל') name = {$exists: true}
+            else name = {$regex : criteria.name}
+            delete criteria.name
+        
             // Loop through the filters
             for (let key in criteria){
 
@@ -124,6 +129,10 @@ module.exports = {
                 else criteria[key] = { $in: [...criteria[key], 'לא משנה לי']}
 
                 switch(key) {
+                    case 'name':
+                        name = criteria[key]
+                        break
+
                     case 'dogAge':
                         dogAge = criteria[key]
                         break
@@ -166,7 +175,7 @@ module.exports = {
                 }
             }
 
-            Form.find({dogAge, size, gender, timePeriod, region, city, houseType, residents, experience, pets, adopted: false, deleted: false}, (err, res) => {
+            Form.find({name, dogAge, size, gender, timePeriod, region, city, houseType, residents, experience, pets, adopted: false, deleted: false}, (err, res) => {
                 if (err) throw err
                 else resolve(res)
             })

@@ -119,6 +119,7 @@ export class Admin extends Component {
         // Search forms
         else return (
             <Search
+                criteria={this.state.criteria}
                 formCount={this.state.formCount}
                 search={this.search}
             />

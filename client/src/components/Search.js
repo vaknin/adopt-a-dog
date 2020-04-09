@@ -6,6 +6,7 @@ import FeatherIcon from 'feather-icons-react'
 export class Search extends Component {
 
     state = {
+        name: "הכל",
         dogAge: ["הכל"],
         size: ["הכל"],
         gender: ["הכל"],
@@ -16,6 +17,21 @@ export class Search extends Component {
         residents: ["הכל"],
         experience: ["הכל"],
         pets: ["הכל"]
+    }
+
+    // Load preset search configurations
+    /*componentDidMount = () => {
+        const criteria = this.props.criteria
+        if (!criteria) return
+        for (let key in criteria){
+            this.setState({[key]: criteria[key]})
+        }
+    }*/
+
+    changeName = e => {
+        //this.setState({name: e.target.value})
+        if (e.target.value !== "") this.setState({name: e.target.value})
+        else this.setState({name: "הכל"})
     }
 
     render() {
@@ -133,7 +149,7 @@ export class Search extends Component {
                     </div>
                 </div>
 
-                {/* Person/Logistics related filters 2*/}
+                {/* Person/Logistics related filters*/}
                 <div className="filters">
 
                     {/* Experience with dogs */}
@@ -160,6 +176,16 @@ export class Search extends Component {
 
                 </div>
                 
+                {/* Person's name */}
+                <div className="filters">
+
+                    {/* Name */}
+                    <div className="form-group admin-filter">
+                        <label>שם איש הקשר</label>
+                        <input /*value={this.state.name}*/ onChange={this.changeName} type="text" className="form-control-sm form-control" placeholder="השאירו ריק בשביל כולם" />
+                    </div>
+                </div>
+
                 <button onClick={() => this.props.search(this.state)} type="button" className="btn btn-secondary mt-4 mb-3">
                     <FeatherIcon icon="search" />
                 </button>
