@@ -35,6 +35,24 @@ body {
   border-bottom: 0.5px solid #aaa;
 }
 
+.form-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.form-title {
+  margin: 0.5rem auto 0.5rem auto;
+  text-align: center;
+  font-size: 3rem;
+  filter: drop-shadow(0px 0.2px 1.5px rgb(0, 0, 0));
+}
+
+.form {
+  width: 50%;
+  text-align-last: center;
+}
+
 /* Hide Arrows From Input Number */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -119,7 +137,7 @@ div {
   flex-direction: column;
   align-items: center;
   padding-top: 3%;
-  background: url(https://images.unsplash.com/photo-1521449256184-170b4a4c437c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1349&q=80);
+  background: #3f7e96;
 }
 
 .filters {
@@ -182,5 +200,61 @@ div {
 @media (min-width:961px){
   .main-container, .admin-container {
     background-size: cover;
+  }
+
+  .form-container {
+    border-top: 1px solid #bbb;
+    padding-top: 1.5rem;
+  }
+
+  .form-title {
+    filter: drop-shadow(0px 0.2px 2px rgb(0, 0, 0));
+    margin: 1.5rem auto 2rem auto;
+    font-size: 5rem;
+    border-bottom: 1px solid #4c4c4c6b;
+    width: 70%;
+    padding-bottom: 0.6rem;
+  }
+
+  .form {
+    width: 15%;
+    text-align-last: center;
+  }
+
+  .results-container, .admin-container {
+    height: 100vh;
+  }
+
+  .description {
+    padding: 2rem 1rem 0.5rem 1rem;
+    text-align: center;
+    color: #d7d8d8;
+    width: 50%;
+    text-align: center;
+    background-color: #5492a2;
+    border-radius: 8px;
+  }
+
+  .filters {
+    width: auto;
+  }
+
+  .results-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    height: 100vh;
+    justify-items: center;
+    align-content: space-between;
+    margin: 2rem auto 2rem auto;
+  }
+
+  .result {
+    margin: auto 0.75rem auto 0.75rem;
+    cursor: pointer;
+    transition: background 0.3s ease-in;
+  }
+
+  .result:hover {
+    background-color: #dbecef;
   }
 }

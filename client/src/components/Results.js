@@ -17,7 +17,7 @@ export class Results extends Component {
     render() {
 
         return (
-            <div style={{justifyContent: 'flex-start'}} className="results-outer-container">
+            <div className="results-outer-container">
                 <div className="back-button-container">
                     <h5 className="my-3 mx-3">{`נמצאו ${this.props.data.length} טפסים העונים לדרישות החיפוש`}</h5>
                     <FeatherIcon size="35" className="mx-3" color="#171717" onClick={this.props.reset} icon="arrow-left" />
