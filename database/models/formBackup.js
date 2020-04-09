@@ -21,4 +21,4 @@ const Schema = new mongoose.Schema({
     deleted: { type: Boolean, default: false }
 });
 
-module.exports = mongoose.model('Form', Schema);
+module.exports = mongoose.model('FormBackup', Schema);

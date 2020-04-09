@@ -9,7 +9,7 @@ export class Results extends Component {
     state = {}
 
     openModal = data => {
-        this.setState({modalData: data}, callback => {
+        this.setState({modalData: data}, () => {
             $('#resultModal').modal('show')
         })
     }
@@ -26,6 +26,8 @@ export class Results extends Component {
                 <div className="results-container">
                     <ResultModal
                         data={this.state.modalData}
+                        markAdpoted={() => this.props.markAdpoted(this.state.modalData._id)}
+                        delete={() => this.props.delete(this.state.modalData._id)}
                     />
                     {this.props.data.map(data => {
                         return (

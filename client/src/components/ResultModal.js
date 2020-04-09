@@ -1,34 +1,47 @@
 import React, { Component } from 'react'
 /*
-name: "אביב"
-phone: "0259252"
-phone2: "0259252"
-timePeriod: "אומנה"
-
-    pets: (2) ["חתול", "אחר"]
-    size: ["קטן"]
-    dogAge: (4) ["לא משנה לי", "גור", "צעיר", "בוגר"]
+    phone: "0259252"
+    phone2: "0259252"
     _id: "5e8c834d8072c533ecaba5e5"
-    gender: "לא משנה לי"
-    houseType: "דירה עם גג או חצר מתוחמים"
-    residents: "יחיד"
-    experience: "מנוסה"
-    comments: "אין"
 */
 
 export class ResultModal extends Component {
 
-    parseDate = originalDate => {
-        const date = new Date(originalDate)
+    parseDate = original => {
+        const date = new Date(original)
         const newDate = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`
         return newDate
+    }
+
+    ArrayToString = array => {
+
+        // No preference
+        if (array.includes('לא משנה לי')) return 'אין העדפה מיוחדת'
+
+        else if (array.includes('אין')) return 'אין'
+
+        // One preference
+        else if (array.length === 1) return array[0]
+
+        // Two preferences
+        else if (array.length === 2) return `${array[0]} ו${array[1]}`
+
+        // More than two preferences
+        else{
+            let string = ''
+            for (let i = 0; i < array.length; i++) {
+                if (i === array.length - 1) string += `ו${array[i]}`
+                else if (i === array.length - 2) string += `${array[i]} `
+                else string += `${array[i]}, `
+            }
+            return string
+        }
     }
 
     render() {
         if (!this.props.data) return null
 
         const data = this.props.data
-        console.log(data)
 
         return (
             <div className="modal fade" id="resultModal" tabIndex="-1" role="dialog" aria-hidden="true">
@@ -42,17 +55,25 @@ export class ResultModal extends Component {
                     </div>
                     <div className="modal-body rtl">
                         <div>
-                            <p>גיל: {data.age}</p>
-                            <p>תאריך הצטרפות למאגר: {this.parseDate(data.date)}</p>
-                            <p>אזור מגורים: {data.region}</p>
-                            <p>עיר מגורים: {data.city}</p>
-                            <p>סוג בקשה: {data.timePeriod}</p>
+                            <p className="modal-description">תאריך הצטרפות למאגר: {this.parseDate(data.date)}</p>
+                            <p className="modal-description">סוג בקשה: {data.timePeriod}</p>
+                            <p className="modal-description">מין רצוי: {data.gender}</p>
+                            <p className="modal-description">גיל רצוי: {this.ArrayToString(data.dogAge)}</p>
+                            <p className="modal-description">גודל רצוי: {this.ArrayToString(data.size)}</p>
+                            <p className="modal-description">נסיון עם כלבים: {data.experience}</p>
+                            <p className="modal-description">אזור מגורים: {data.region}</p>
+                            <p className="modal-description">עיר מגורים: {data.city}</p>
+                            <p className="modal-description">גיל: {data.age}</p>
+                            <p className="modal-description">סוג בית: {data.houseType}</p>
+                            <p className="modal-description">סוג דיירים: {data.residents}</p>
+                            <p className="modal-description">חיות נוספות בבית: {this.ArrayToString(data.pets)}</p>
                             {data.comments ? <p>הערות: {data.comments}</p> : null}
                         </div>
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-dismiss="modal">סגור</button>
-                        <button type="button" className="btn btn-success">אימץ!</button>
+                        <button onClick={this.props.delete} type="button" className="btn btn-danger">הסרה</button>
+                        <button onClick={this.props.markAdpoted} type="button" className="btn btn-success">אימץ!</button>
                     </div>
                     </div>
                 </div>

@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
-const Form = require('./models/form.js');
-const User = require('./models/user.js');
-
+const mongoose = require('mongoose')
+const Form = require('./models/form')
+const FormBackup = require('./models/formBackup')
+const User = require('./models/user')
 const db = mongoose.connection;
 
 module.exports = {
@@ -59,7 +59,7 @@ module.exports = {
             const comments = form.comments
 
             // Save to DB
-            new Form({ name, dogAge, size, gender, age, city, region, houseType, phone, phone2, residents, experience, pets, timePeriod, comments, adopted: false})
+            new Form({ name, dogAge, size, gender, age, city, region, houseType, phone, phone2, residents, experience, pets, timePeriod, comments })
             .save((err) => {
                 if (err) throw(err)
                 else resolve()
@@ -122,9 +122,6 @@ module.exports = {
 
                 // "all" wasn't selected
                 else criteria[key] = { $in: [...criteria[key], 'לא משנה לי']}
-                //else criteria[key] = { key: { "$in": [...criteria[key], "לא משנה לי"] } }
-
-                //console.log(criteria[key])
 
                 switch(key) {
                     case 'dogAge':
@@ -169,10 +166,37 @@ module.exports = {
                 }
             }
 
-            Form.find({dogAge, size, gender, timePeriod, region, city, houseType, residents, experience, pets, adopted: false, houseType}, (err, res) => {
+            Form.find({dogAge, size, gender, timePeriod, region, city, houseType, residents, experience, pets, adopted: false, deleted: false}, (err, res) => {
                 if (err) throw err
                 else resolve(res)
             })
         })
     },
+
+    setToFalse: function(){
+        Form.updateMany({},
+            { "$set": { deleted: false} }, err => {
+                if (err) throw err
+                console.log('done')
+        })
+    },
+
+    backup: function(){
+        return new Promise(async resolve => {
+            await this.clear(['formbackups'])
+            Form.find({}, async (err, res) => {
+                if (err) throw err
+                for (let form of res){
+                    let newForm = Object.assign({}, form);
+                    newForm = newForm._doc
+                    delete newForm._id
+                    const backupForm = new FormBackup(newForm)
+                    await backupForm.save(err => {
+                        if (err) throw err
+                    })
+                }
+            })
+            resolve(console.log('Backed up all forms'))
+        })
+    }
 }

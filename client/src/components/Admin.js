@@ -56,6 +56,48 @@ export class Admin extends Component {
         .finally(() => this.setState({loading: false}))
     }
 
+    // Set the form as 'adopted' and hide from the list
+    markAdpoted = async id => {
+
+        // Start loading animation
+        this.setState({loading: true})
+
+        return console.log(id)
+
+        // Send user & pass for validation
+        const username = this.state.username
+        const password = this.state.password
+
+        await axios.post('/adopt', {username, password, id})
+        .then(response => {
+            //this.setState({results: response.data.results})
+        })
+        .catch(e => {
+            console.log(e)
+        })
+        .finally(() => this.setState({loading: false}))
+    }
+
+    // Delete a form
+    delete = async id => {
+
+        // Start loading animation
+        this.setState({loading: true})
+
+        // Send user & pass for validation
+        const username = this.state.username
+        const password = this.state.password
+
+        await axios.post('/adopt', {username, password, id})
+        .then(response => {
+            //this.setState({results: response.data.results})
+        })
+        .catch(e => {
+            console.log(e)
+        })
+        .finally(() => this.setState({loading: false}))
+    }
+
     reset = () => {
         this.setState({results: undefined})
     }
@@ -87,6 +129,8 @@ export class Admin extends Component {
                 <Results
                     data={this.state.results}
                     reset={this.reset}
+                    markAdpoted={this.markAdpoted}
+                    delete={this.delete}
                 />
             )
         }

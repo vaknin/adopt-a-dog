@@ -17,6 +17,7 @@ async function main(){
     // Connect to database
     await database.connect(process.env.DB_PASS);
     //await database.createUser('דד', 'דד')
+    //await database.backup()
     
     // Create the server
 	const port = process.env.PORT || 5000;

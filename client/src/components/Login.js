@@ -4,7 +4,7 @@ import Cookies from 'universal-cookie'
 
 export class Login extends Component {
 
-    cookies = new Cookies();
+    //cookies = new Cookies();
 
     state = {
         username: undefined,
@@ -14,9 +14,11 @@ export class Login extends Component {
     
     // Attempt cookies login
     componentDidMount = () => {
+        return
         const username = this.cookies.get('username')
         const password = this.cookies.get('password')
         if (username && password){
+            console.log('login attempt')
             this.props.login(username, password)
         }
     }
@@ -28,17 +30,13 @@ export class Login extends Component {
 
         const username = this.state.username
         const password = this.state.password
+        //this.cookies.set('username', username); # todo: make secure cookies
+        //this.cookies.set('password', password);
         const loggedIn = await this.props.login(username, password);
 
         // Login failed
         if (!loggedIn){
             this.setState({showAlert: true});
-        }
-
-        // Logged in, save id&pass to cookies
-        else{
-            this.cookies.set('username', username);
-            this.cookies.set('password', password);
         }
     }
     
