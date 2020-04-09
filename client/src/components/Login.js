@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
 import FeatherIcon from 'feather-icons-react'
-import Cookies from 'universal-cookie'
 
 export class Login extends Component {
-
-    //cookies = new Cookies();
 
     state = {
         username: undefined,
@@ -12,17 +9,6 @@ export class Login extends Component {
         showAlert: false
     }
     
-    // Attempt cookies login
-    componentDidMount = () => {
-        return
-        const username = this.cookies.get('username')
-        const password = this.cookies.get('password')
-        if (username && password){
-            console.log('login attempt')
-            this.props.login(username, password)
-        }
-    }
-
     // Attempt to log in
     login = async () => {
 
@@ -30,8 +16,6 @@ export class Login extends Component {
 
         const username = this.state.username
         const password = this.state.password
-        //this.cookies.set('username', username); # todo: make secure cookies
-        //this.cookies.set('password', password);
         const loggedIn = await this.props.login(username, password);
 
         // Login failed

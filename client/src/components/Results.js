@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import FeatherIcon from 'feather-icons-react'
-import Result from './Result'
 import ResultModal from './ResultModal'
 import $ from 'jquery'
 
@@ -29,17 +28,12 @@ export class Results extends Component {
                         markAdpoted={() => this.props.markAdpoted(this.state.modalData._id)}
                         delete={() => this.props.delete(this.state.modalData._id)}
                     />
-                    {this.props.data.map(data => {
-                        return (
-                            <Result
-                                key={data._id}
-                                data={data}
-                                expand={() => this.openModal(data)}
-                            />
-                        )
-                    })}
+                    {this.props.data.map(data =>
+                        <div className="result p-2" key={data._id} onClick={() => this.openModal(data)}>
+                            <p>{data.name}</p>
+                        </div>)
+                    }
                 </div>
-
             </div>
         )
     }
