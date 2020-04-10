@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import URLencoder from 'encodeurl'
 
 export class ResultModal extends Component {
 
@@ -33,6 +34,31 @@ export class ResultModal extends Component {
         }
     }
 
+    createWhatsappMessage = () => {
+        const data = this.props.data
+        const number1 = this.props.data.phone
+        const number2 = this.props.data.phone2
+
+        let string = `שם: ${data.name}\n`
+        string += `תאריך הצטרפות למאגר: ${this.parseDate(data.date)}\n`
+        string += `איזור מגורים: ${data.region}\n`
+        string += `עיר מגורים: ${data.city}\n`
+        string += `גיל: ${data.age}\n`
+        string += `סוג בקשה: ${data.timePeriod}\n`
+        string += `מין רצוי: ${data.gender}\n`
+        string += `גיל רצוי: ${this.ArrayToString(data.dogAge)}\n`
+        string += `גודל רצוי: ${this.ArrayToString(data.size)}\n`
+        string += `סוג בית: ${data.houseType}\n`
+        string += `סוג דיירים: ${data.residents}\n`
+        string += `חיות נוספות בבית: ${this.ArrayToString(data.pets)}\n`
+        string += data.comments ? `הערות או בקשות: ${data.comments}\n` : ''
+        string += `טלפון ראשי: ${number1}`
+        string += number2 ? `\nטלפון משני: ${number2}` : ''
+
+        // URL encode the string and return
+        return URLencoder(string)
+    }
+
     // Render a whatsapp/phonecall dropdown button
     renderPhoneDropdown = type => {
         const number1 = this.props.data.phone
@@ -57,6 +83,18 @@ export class ResultModal extends Component {
                             className="dropdown-item"
                         >
                             טלפון משני
+                        </a>
+                        :
+                        null
+                    }
+                    {
+                        type === 'whatsapp'
+                        ?
+                        <a
+                        href={`https://wa.me/9720522333013/?text=${this.createWhatsappMessage()}`}
+                        className="dropdown-item"
+                        >
+                            ייצוא לוואטסאפ
                         </a>
                         :
                         null
@@ -86,6 +124,7 @@ export class ResultModal extends Component {
     }
 
     render() {
+
         // No data render
         if (!this.props.data) return null
 
