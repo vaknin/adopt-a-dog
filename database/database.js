@@ -120,7 +120,6 @@ module.exports = {
             delete criteria.name
 
             // Comments
-            console.log(criteria.comments)
             if (criteria.comments !== 'הכל') comments = {$regex : criteria.comments}
             else comments = undefined
 
@@ -184,9 +183,20 @@ module.exports = {
         })
     },
 
-    setToFalse: function(){
-        Form.updateMany({},
-            { "$set": { deleted: false} }, err => {
+    // experiments with the comments
+    playground: function(){
+
+        return new Promise(resolve => {
+            Form.find({comments: {$exists: true, $in: ''}}, (err, res) => {
+                    if (err) throw err
+                    console.log(res)
+                    resolve()
+            })
+        })
+
+
+        Form.updateMany({comments: {$exists: false}},
+            { "$set": { comments: ''} }, err => {
                 if (err) throw err
                 console.log('done')
         })

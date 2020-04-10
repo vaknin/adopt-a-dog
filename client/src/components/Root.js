@@ -62,7 +62,7 @@ export class Root extends Component {
                     <div className="text-center px-4">
                         <h3 className="thank-you-text">תודה!</h3>
                         <div>
-                            <h5 className="mb-2">אז מה עושים עכשיו?</h5>
+                            <h5 className="mb-3">אז מה עושים עכשיו?</h5>
                             <p>
                                 <FeatherIcon icon="alert-circle" />&nbsp;
                                 <a href="https://www.facebook.com/648407794/posts/10157770017417795" rel="noopener noreferrer" target="_blank">משתפים!</a><br/>
