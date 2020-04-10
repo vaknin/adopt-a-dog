@@ -70,7 +70,7 @@ input::-webkit-inner-spin-button {
 .thank-you-text {
   border-bottom: 1px solid #bfbaba;
   padding-bottom: 4%;
-  margin-bottom: 9%;
+  margin-bottom: 5%;
 }
 
 .heart {
@@ -170,7 +170,7 @@ div {
 .results-container {
   display: grid;
   grid-template-columns: auto auto;
-  margin-top: 4%;
+  margin: 6.5% auto;
 }
 
 .result {
@@ -254,26 +254,14 @@ div {
   }
 
   .results-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    margin-top: 4%;
     display: grid;
     grid-template-columns: auto auto auto auto;
-    height: 100vh;
-    justify-items: center;
-    align-content: space-between;
-    margin: 2rem auto 2rem auto;
   }
 
   .result {
     border-bottom: 1px solid #1c2d38;
     border-radius: 9px;
-    padding-top: 1.5rem!important;
-    padding-bottom: 1.5rem!important;
     text-align: center;
-    margin: auto 0.75rem auto 0.75rem;
     cursor: pointer;
     transition: background 0.3s ease-in;
   }

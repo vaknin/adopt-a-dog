@@ -51,7 +51,7 @@ module.exports = {
             const region = form.region
             const houseType = form.houseType
             const phone = form.phone
-            const phone2 = form.phone2 && form.phone2 != form.phone ? form.phone2 : undefined
+            const phone2 = (form.phone2 && form.phone2 != form.phone) ? form.phone2 : undefined
             const residents = form.residents
             const experience = form.experience
             const pets = form.pets
@@ -112,13 +112,18 @@ module.exports = {
     getForms: function(criteria){
         return new Promise(resolve => {
 
-            let name, dogAge, size, gender, timePeriod, region, city, houseType, residents, experience, pets
+            let name, comments, dogAge, size, gender, timePeriod, region, city, houseType, residents, experience, pets
 
-            // Search by person's name
+            // Name
             if (criteria.name === 'הכל') name = {$exists: true}
             else name = {$regex : criteria.name}
             delete criteria.name
-        
+
+            // Comments
+            console.log(criteria.comments)
+            if (criteria.comments !== 'הכל') comments = {$regex : criteria.comments}
+            else comments = undefined
+
             // Loop through the filters
             for (let key in criteria){
 
@@ -129,9 +134,6 @@ module.exports = {
                 else criteria[key] = { $in: [...criteria[key], 'לא משנה לי']}
 
                 switch(key) {
-                    case 'name':
-                        name = criteria[key]
-                        break
 
                     case 'dogAge':
                         dogAge = criteria[key]

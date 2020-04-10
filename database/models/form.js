@@ -15,7 +15,7 @@ const Schema = new mongoose.Schema({
     size: Array,
     dogAge: Array,
     timePeriod: String,
-    comments: String,
+    comments: { type: String, default: "" },
     date: { type: Date, default: Date.now },
     adopted: { type: Boolean, default: false },
     deleted: { type: Boolean, default: false }
