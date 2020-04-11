@@ -20,6 +20,7 @@ export class PetForm extends Component {
     }
 
     render() {
+
         return (
             <div>
                 <h3 className="form-title">אימוץ ואומנת כלבים</h3>
@@ -74,6 +75,7 @@ export class PetForm extends Component {
                             <select required onChange={e => this.setState({region: e.target.value})} className="form-control-sm form-control">
                                 <option selected disabled value="">איזור</option>
                                 <option>מרכז</option>
+                                <option>ירושלים</option>
                                 <option>צפון</option>
                                 <option>דרום</option>
                                 <option>יהודה ושומרון</option>
@@ -141,7 +143,7 @@ export class PetForm extends Component {
                             <label>אימוץ או אומנה?</label>
                             <select required onChange={e => this.setState({timePeriod: e.target.value})} className="form-control-sm form-control">
                                 <option selected disabled value="">פרק זמן</option>
-                                <option>אומנה</option>
+                                <option value="אומנה">אומנה (מינימום חודש)</option>
                                 <option>אימוץ</option>
                                 <option>אומנה, עם אפשרות לאמץ</option>
                             </select>
@@ -174,9 +176,9 @@ export class PetForm extends Component {
                             <label>גודל מועדף (ניתן לסמן כמה)</label>
                             <select multiple required onChange={e => this.setState({size: $(e.target).val()})} className="form-control-sm form-control">
                                 <option>לא משנה לי</option>
-                                <option>קטן</option>
-                                <option>בינוני</option>
-                                <option>גדול</option>
+                                <option value="קטן">קטן - עד 10 ק"ג</option>
+                                <option value="בינוני">בינוני - 10 עד 20 ק"ג</option>
+                                <option value="גדול">גדול - 20 ק"ג ומעלה</option>
                             </select>
                         </div>
 

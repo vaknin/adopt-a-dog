@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import cities from './cities-list'
 import $ from 'jquery'
-import FeatherIcon from 'feather-icons-react'
 
 export class Search extends Component {
 
@@ -53,9 +52,9 @@ export class Search extends Component {
                         <label>גודל הכלב</label>
                         <select defaultValue={["הכל"]} multiple onChange={e => this.setState({size: $(e.target).val()})} className="form-control-sm form-control">
                             <option>הכל</option>
-                            <option>קטן</option>
-                            <option>בינוני</option>
-                            <option>גדול</option>
+                            <option value="קטן">קטן - עד 10 ק"ג</option>
+                            <option value="בינוני">בינוני - 10 עד 20 ק"ג</option>
+                            <option value="גדול">גדול - 20 ק"ג ומעלה</option>
                         </select>
                     </div>
 
@@ -96,6 +95,7 @@ export class Search extends Component {
                         <select defaultValue={["הכל"]} multiple onChange={e => this.setState({region: $(e.target).val()})} className="form-control-sm form-control">
                             <option>הכל</option>
                             <option>מרכז</option>
+                            <option>ירושלים</option>
                             <option>צפון</option>
                             <option>דרום</option>
                             <option>יהודה ושומרון</option>
@@ -188,7 +188,7 @@ export class Search extends Component {
                 </div>
 
                 <button onClick={() => this.props.search(this.state)} type="button" className="btn btn-secondary mt-4 mb-3">
-                    <FeatherIcon icon="search" />
+                    שלח
                 </button>
             </div>
         )
