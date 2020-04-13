@@ -71,6 +71,7 @@ export class ResultModal extends Component {
                 </button>
                 <div className="dropdown-menu">
                     <a
+                        rel="noopener noreferrer" target="_blank"
                         href={type === 'whatsapp' ? `https://api.whatsapp.com/send?phone=+972${number1}` : `tel:${number1}`}
                         className="dropdown-item"
                     >
@@ -79,6 +80,7 @@ export class ResultModal extends Component {
                     {
                         number2 ?
                         <a
+                            rel="noopener noreferrer" target="_blank"
                             href={type === 'whatsapp' ? `https://api.whatsapp.com/send?phone=+972${number2}` : `tel:${number2}`}
                             className="dropdown-item"
                         >
@@ -91,6 +93,7 @@ export class ResultModal extends Component {
                         type === 'whatsapp'
                         ?
                         <a
+                        rel="noopener noreferrer" target="_blank"
                         href={`https://wa.me/9720522333013/?text=${this.createWhatsappMessage()}`}
                         className="dropdown-item"
                         >
