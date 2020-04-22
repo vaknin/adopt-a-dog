@@ -207,6 +207,7 @@ module.exports = {
         })
     },
 
+    // Delete or hide forms
     hide: function(id, reason){
         return new Promise(resolve => {
 
@@ -221,5 +222,5 @@ module.exports = {
                 else resolve()
             })
         })
-    }
+    },
 }

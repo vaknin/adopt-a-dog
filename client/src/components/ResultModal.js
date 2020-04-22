@@ -148,6 +148,7 @@ export class ResultModal extends Component {
                             <p className="modal-description">תאריך הצטרפות למאגר: {this.parseDate(data.date)}</p>
                             <p className="modal-description">אזור מגורים: {data.region}</p>
                             <p className="modal-description">עיר מגורים: {data.city}</p>
+                            <p className="modal-description">ניידות (רכב): {data.mobility}</p>
                             <p className="modal-description">גיל: {data.age}</p>
                             <p className="modal-description">סוג בקשה: {data.timePeriod}</p>
                             <p className="modal-description">מין רצוי: {data.gender}</p>

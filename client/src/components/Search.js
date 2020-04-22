@@ -16,7 +16,8 @@ export class Search extends Component {
         houseType: ["הכל"],
         residents: ["הכל"],
         experience: ["הכל"],
-        pets: ["הכל"]
+        pets: ["הכל"],
+        mobility: ["הכל"]
     }
 
     changeField = e => {
@@ -113,7 +114,7 @@ export class Search extends Component {
 
                     {/* Mobility */}
                     <div className="form-group admin-filter">
-                        <label>איזור מגורים</label>
+                        <label>ניידות (רכב)</label>
                         <select defaultValue={["הכל"]} multiple onChange={e => this.setState({mobility: $(e.target).val()})} className="form-control-sm form-control">
                             <option>הכל</option>
                             <option>אני לא נייד/ת</option>
