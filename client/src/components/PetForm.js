@@ -66,7 +66,7 @@ export class PetForm extends Component {
                         {/* Age */}
                         <div className="form-group text-center">
                             <label>גיל</label>
-                            <input required onChange={e => this.setState({age: e.target.value})} min="8" max="120" type="number" className="form-control-sm form-control" />
+                            <input required onChange={e => this.setState({age: e.target.value})} min="21" max="120" type="number" className="form-control-sm form-control" />
                         </div>
 
                         {/* Region */}
@@ -112,6 +112,16 @@ export class PetForm extends Component {
                         <div className="form-group text-center">
                             <label>טלפון נוסף (כדאי!)</label>
                             <input onChange={e => this.setState({phone2: e.target.value})} type="tel" maxLength="10" minLength="9" className="form-control-sm form-control" />
+                        </div>
+
+                        {/* Mobility */}
+                        <div className="form-group text-center">
+                            <label>ניידות (רכב)</label>
+                            <select required onChange={e => this.setState({mobility: e.target.value})} className="form-control-sm form-control">
+                                <option selected disabled value="">ניידות</option>
+                                <option>אני לא נייד/ת</option>
+                                <option>אני נייד/ת</option>
+                            </select>
                         </div>
 
                         {/* Who's living in the house? */}
@@ -177,8 +187,8 @@ export class PetForm extends Component {
                             <select multiple required onChange={e => this.setState({size: $(e.target).val()})} className="form-control-sm form-control">
                                 <option>לא משנה לי</option>
                                 <option value="קטן">קטן - עד 10 ק"ג</option>
-                                <option value="בינוני">בינוני - 10 עד 20 ק"ג</option>
-                                <option value="גדול">גדול - 20 ק"ג ומעלה</option>
+                                <option value="בינוני">בינוני - 10 עד 25 ק"ג</option>
+                                <option value="גדול">גדול - 25 ק"ג ומעלה</option>
                             </select>
                         </div>
 

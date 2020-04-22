@@ -6,6 +6,7 @@ const Schema = new mongoose.Schema({
     age: String,
     region: String,
     city: String,
+    mobility: String,
     houseType: String,
     phone: String,
     phone2: String,

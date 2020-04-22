@@ -45,6 +45,7 @@ module.exports = {
             const name = form.name
             const dogAge = form.dogAge
             const size = form.size
+            const mobility = form.mobility
             const gender = form.gender
             const age = form.age
             const city = form.city
@@ -59,7 +60,7 @@ module.exports = {
             const comments = form.comments
 
             // Save to DB
-            new Form({ name, dogAge, size, gender, age, city, region, houseType, phone, phone2, residents, experience, pets, timePeriod, comments })
+            new Form({ name, dogAge, mobility, size, gender, age, city, region, houseType, phone, phone2, residents, experience, pets, timePeriod, comments })
             .save((err) => {
                 if (err) throw(err)
                 else resolve()
@@ -112,7 +113,7 @@ module.exports = {
     getForms: function(criteria){
         return new Promise(resolve => {
 
-            let name, comments, dogAge, size, gender, timePeriod, region, city, houseType, residents, experience, pets
+            let name, comments, dogAge, size, gender, timePeriod, region, city, houseType, residents, experience, pets, mobility
 
             // Name
             if (criteria.name === 'הכל') name = {$exists: true}
@@ -136,6 +137,10 @@ module.exports = {
 
                     case 'dogAge':
                         dogAge = criteria[key]
+                        break
+
+                    case 'mobility':
+                        mobility = criteria[key]
                         break
 
                     case 'size':
@@ -176,29 +181,10 @@ module.exports = {
                 }
             }
 
-            Form.find({name, dogAge, size, gender, timePeriod, region, city, houseType, residents, experience, pets, adopted: false, deleted: false}, (err, res) => {
+            Form.find({name, dogAge, size, mobility, gender, timePeriod, region, city, houseType, residents, experience, pets, adopted: false, deleted: false}, (err, res) => {
                 if (err) throw err
                 else resolve(res)
             })
-        })
-    },
-
-    // experiments with the comments
-    playground: function(){
-
-        return new Promise(resolve => {
-            Form.find({comments: {$exists: true, $in: ''}}, (err, res) => {
-                    if (err) throw err
-                    console.log(res)
-                    resolve()
-            })
-        })
-
-
-        Form.updateMany({comments: {$exists: false}},
-            { "$set": { comments: ''} }, err => {
-                if (err) throw err
-                console.log('done')
         })
     },
 

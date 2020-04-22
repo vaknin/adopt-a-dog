@@ -53,8 +53,8 @@ export class Search extends Component {
                         <select defaultValue={["הכל"]} multiple onChange={e => this.setState({size: $(e.target).val()})} className="form-control-sm form-control">
                             <option>הכל</option>
                             <option value="קטן">קטן - עד 10 ק"ג</option>
-                            <option value="בינוני">בינוני - 10 עד 20 ק"ג</option>
-                            <option value="גדול">גדול - 20 ק"ג ומעלה</option>
+                            <option value="בינוני">בינוני - 10 עד 25 ק"ג</option>
+                            <option value="גדול">גדול - 25 ק"ג ומעלה</option>
                         </select>
                     </div>
 
@@ -108,6 +108,16 @@ export class Search extends Component {
                         <select defaultValue={["הכל"]} multiple onChange={e => this.setState({city: $(e.target).val()})} className="form-control-sm form-control">
                             <option>הכל</option>
                             {cities.map(city => <option key={city}>{city}</option>)}
+                        </select>
+                    </div>
+
+                    {/* Mobility */}
+                    <div className="form-group admin-filter">
+                        <label>איזור מגורים</label>
+                        <select defaultValue={["הכל"]} multiple onChange={e => this.setState({mobility: $(e.target).val()})} className="form-control-sm form-control">
+                            <option>הכל</option>
+                            <option>אני לא נייד/ת</option>
+                            <option>אני נייד/ת</option>
                         </select>
                     </div>
 
